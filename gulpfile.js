@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const watch = require('gulp-watch');
 const stylus = require('gulp-stylus');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
@@ -8,6 +7,7 @@ gulp.task('html', () => {
   console.log('html')
   return gulp.src('./src/*.html')
     .pipe(gulp.dest('./build'))
+    .pipe(browserSync.stream())
   }
 );
 
@@ -20,8 +20,8 @@ gulp.task('stylus', () => (
     .pipe(browserSync.stream())
 ));
 
-// gulp.task('default', ['html', 'stylus'], () => {
-//   browserSync.init({ server: '/build'});
-//   watch('src/**/*.styl', 'stylus');
-//   watch('src/**/*.html', 'html');
-// });
+gulp.task('default', ['html', 'stylus'], () => {
+  browserSync.init({ server: './build' });
+  gulp.watch('./src/**/*.styl', ['stylus']);
+  gulp.watch('./src/**/*.html', ['html']);
+});
