@@ -4,6 +4,7 @@ breakpoints = {
   'md': 960px,
   'sm': 720px
 }
+
 maxWidth = 1200px
 
 .grid__row,
@@ -32,6 +33,7 @@ generateGrid()
     margin-right: gutterCompensation;
     margin-left: gutterCompensation;
 
+  // alignments
   &__row_v-top
     align-items flex-start
 
@@ -41,6 +43,22 @@ generateGrid()
   &__row_v-bottom
     align-items flex-end
 
+  &__row_h-start
+    justify-content flex-start
+
+   &__row_h-center
+    justify-content center
+
+  &__row_h-end
+    justify-content flex-end
+
+  &__row_h-around
+    justify-content space-around
+
+  &__row_h-between
+    justify-content space-between
+
+  // grid cols
   &__col
     flex: 1 1 0;
     padding-right: halfGutter;
