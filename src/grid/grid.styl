@@ -53,6 +53,17 @@ generateGrid()
             padding-right: halfGutter;
             padding-left: halfGutter;
 
+    // offsets
+    for n in (1..columns)
+      &_offset-{n} 
+        margin-left: (100% / columns * n)
+
+    for breakpoint in breakpoints
+      @media (max-width: breakpoints[breakpoint])
+        for n in (1..columns)
+          &_{breakpoint}_offset-{n}
+            margin-left: (100% / columns * n)
+
 .grid
   generateGrid()
 
