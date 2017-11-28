@@ -1,0 +1,59 @@
+columns = 12
+gutter = 1rem
+breakpoints = {
+  'md': 960px,
+  'sm': 720px
+}
+maxWidth = 1200px
+
+.grid__row,
+[class^='grid__col'] {
+  box-sizing: border-box;  
+}
+
+generateGrid()
+  gutterCompensation = gutter / -2
+  halfGutter = gutter / 2
+  outerMargin = gutter / 2
+
+  box-sizing: border-box;
+  max-width: maxWidth;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: outerMargin;
+  padding-left: outerMargin;
+
+  &__row 
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    margin-right: gutterCompensation;
+    margin-left: gutterCompensation;
+
+  &__col
+    flex: 1 1 0;
+    padding-right: halfGutter;
+    padding-left: halfGutter;
+
+    for n in (1..columns)
+      &_{n} 
+        flex-basis: ((100% * n) / columns);
+        max-width: ((100% * n) / columns);
+        padding-right: halfGutter;
+        padding-left: halfGutter;
+
+    for breakpoint in breakpoints
+      @media (max-width: breakpoints[breakpoint])
+        for n in (1..columns)
+          &_{breakpoint}_{n}
+            flex-basis: ((100% * n) / columns);
+            max-width: ((100% * n) / columns);
+            padding-right: halfGutter;
+            padding-left: halfGutter;
+
+.grid
+  generateGrid()
+
+

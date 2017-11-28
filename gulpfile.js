@@ -4,7 +4,6 @@ const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 
 gulp.task('html', () => {
-  console.log('html')
   return gulp.src('./src/*.html')
     .pipe(gulp.dest('./build'))
     .pipe(browserSync.stream())
