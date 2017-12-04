@@ -64,6 +64,15 @@ generateGrid()
     padding-right: halfGutter;
     padding-left: halfGutter;
 
+    // generate order
+    for breakpoint in breakpoints
+      @media (max-width: breakpoints[breakpoint])
+        &_{breakpoint}_first
+          order -10
+
+        &_{breakpoint}_last
+          order 10
+
     for n in (1..columns)
       &_{n} 
         flex-basis: ((100% * n) / columns);
